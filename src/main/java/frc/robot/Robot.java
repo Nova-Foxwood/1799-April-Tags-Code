@@ -121,35 +121,9 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during operator control.
    */
- @Override
-    public void teleopPeriodic() {
-        double forwardSpeed;
-        double rotationSpeed;
-
-        forwardSpeed = -xboxController.getRightY();
-
-        if (xboxController.getAButton()) {
-            // Vision-alignment mode
-            // Query the latest result from PhotonVision
-            var result = camera.getLatestResult();
-
-            if (result.hasTargets()) {
-                // Calculate angular turn power
-                // -1.0 required to ensure positive PID controller effort _increases_ yaw
-                rotationSpeed = -turnController.calculate(result.getBestTarget().getYaw(), 0);
-            } else {
-                // If we have no targets, stay still.
-                rotationSpeed = 0;
-            }
-        } else {
-            // Manual Driver Mode
-            rotationSpeed = xboxController.getLeftX();
-        }
-
-        // Use our forward/turn speeds to control the drivetrain
-        drive.arcadeDrive(forwardSpeed, rotationSpeed);
-
-    }
+   @Override
+  public void teleopPeriodic() {
+  }
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
